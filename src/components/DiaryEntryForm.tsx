@@ -29,6 +29,11 @@ const DiaryEntryForm = ({ addDiaryEntry, notification }: Props) => {
     color: 'red'
   }
 
+  const flex = {
+    display: "flex",
+    gap: "1em"
+  }
+
   return (
     <>
       <h2>Add new entry</h2>
@@ -36,15 +41,27 @@ const DiaryEntryForm = ({ addDiaryEntry, notification }: Props) => {
       <form onSubmit={submit}>
         <div>
           date
-          <input type="text" name="date" />
+          <input type="date" name="date" />
         </div>
-        <div>
+        <div style={flex}>
           visibility
-          <input type="text" name="visibility" />
+          {
+            Object.values(Visibility).map((opt, idx) =>
+                <div key={idx}>
+                    {opt}<input key={idx} type="radio" name="visibility" value={opt} />
+                </div>
+            )
+          }
         </div>
-        <div>
+        <div style={flex}>
           weather
-          <input type="text" name="weather" />
+          {
+            Object.values(Weather).map((opt, idx) =>
+                <div key={idx}>
+                    {opt}<input key={idx} type="radio" name="weather" value={opt} />
+                </div>
+            )
+          }
         </div>
         <div>
           comment
